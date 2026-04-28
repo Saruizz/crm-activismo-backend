@@ -51,11 +51,11 @@ function obtenerCarga(agenteId) {
     let asignados = obtenerAsignados(agenteId);
     let activosCount = asignados.filter(r => r.ESTADO !== "INHABILITADO").length;
     
-    if (activosCount >= 50) return asignados;
+    if (activosCount >= 25) return asignados;
 
     let count = activosCount;
     for (let i = 1; i < data.length; i++) {
-      if (count >= 50) break;
+      if (count >= 25) break;
       
       const asignadoActual = data[i][COLUMNS.AGENTE_ASIGNADO];
       if (!asignadoActual || asignadoActual.toString().trim() === "") {
