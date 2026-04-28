@@ -120,6 +120,9 @@ function actualizarRegistro(registro) {
   sheet.getRange(row, COLUMNS.INGRESO_AL_GRUPO + 1).setValue(registro.INGRESO_AL_GRUPO || "");
   sheet.getRange(row, COLUMNS.OBSERVACIÓN + 1).setValue(registro.OBSERVACION || "");
   sheet.getRange(row, COLUMNS.FECHA_CONTACTO + 1).setValue(registro.FECHA_CONTACTO || "");
+  sheet.getRange(row, COLUMNS.EDAD + 1).setValue(registro.EDAD || "");
+  sheet.getRange(row, COLUMNS.MUNICIPIO + 1).setValue(registro.MUNICIPIO || "");
+  sheet.getRange(row, COLUMNS.DEPARTAMENTO + 1).setValue(registro.DEPARTAMENTO || "");
   sheet.getRange(row, COLUMNS.ÚLTIMA_INTERACCION + 1).setValue(hoy);
   
   return { success: true, id: row };
