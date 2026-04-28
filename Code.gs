@@ -49,13 +49,10 @@ function obtenerCarga(agenteId) {
     const hoy = new Date().toISOString();
     
     let asignados = obtenerAsignados(agenteId);
-    let activosCount = asignados.filter(r => r.ESTADO !== "INHABILITADO").length;
     
-    if (activosCount >= 25) return asignados;
-
-    let count = activosCount;
+    let nuevosAsignados = 0;
     for (let i = 1; i < data.length; i++) {
-      if (count >= 25) break;
+      if (nuevosAsignados >= 25) break;
       
       const asignadoActual = data[i][COLUMNS.AGENTE_ASIGNADO];
       if (!asignadoActual || asignadoActual.toString().trim() === "") {
@@ -66,7 +63,7 @@ function obtenerCarga(agenteId) {
         data[i][COLUMNS.AGENTE_ASIGNADO] = agenteId;
         data[i][COLUMNS.FECHA_ASIGNACION] = hoy;
         asignados.push(formatRow(data[i], row));
-        count++;
+        nuevosAsignados++;
       }
     }
     return asignados;
