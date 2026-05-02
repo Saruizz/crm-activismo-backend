@@ -88,7 +88,7 @@ function obtenerAsignados(agenteId) {
       let row = i + 1;
       
       // REGLA 48H: Inhabilitación automática si no responde
-      if (fechaContactoRaw && (estado === "CONTACTADO" || estado === "NO_RESPONDIO" || estado === "POR_CONTACTAR")) {
+      if (fechaContactoRaw && (estado === "CONTACTADO" || estado === "POR_CONTACTAR")) {
         let fechaContacto = new Date(fechaContactoRaw);
         if (!isNaN(fechaContacto.getTime())) {
           let diffHoras = (ahora - fechaContacto) / (1000 * 60 * 60);
