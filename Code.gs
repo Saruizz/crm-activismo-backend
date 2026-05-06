@@ -110,8 +110,13 @@ function actualizarRegistro(registro) {
   const row = registro.id; 
   const hoy = new Date().toISOString();
   
+  let compromiso = registro.COMPROMISO || "";
+  if (compromiso === "VOCERO FRÍO" || compromiso === "VOCERO FRIO" || compromiso === "Vocero Frío") {
+    compromiso = "VOCERO_FRIO";
+  }
+  
   sheet.getRange(row, COLUMNS.ESTADO + 1).setValue(registro.ESTADO || "");
-  sheet.getRange(row, COLUMNS.COMPROMISO + 1).setValue(registro.COMPROMISO || "");
+  sheet.getRange(row, COLUMNS.COMPROMISO + 1).setValue(compromiso);
   sheet.getRange(row, COLUMNS.PERFILES + 1).setValue(registro.PERFILES || "");
   sheet.getRange(row, COLUMNS.PERFILES_CONFIRMADOS + 1).setValue(registro.PERFILES_CONFIRMADOS || "");
   sheet.getRange(row, COLUMNS.INGRESO_AL_GRUPO + 1).setValue(registro.INGRESO_AL_GRUPO || "");
