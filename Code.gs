@@ -3,7 +3,7 @@ const SHEET_NAME = "Hoja 1"; // Asegúrate de que coincida con el nombre de tu h
 const COLUMNS = {
   NOMBRE: 0, CÉDULA: 1, TELÉFONO: 2, MUNICIPIO: 3, DEPARTAMENTO: 4, EDAD: 5,
   ESTADO: 6, COMPROMISO: 7, PERFILES: 8, PERFILES_CONFIRMADOS: 9,
-  FECHA_CONTACTO: 10, FECHA_RECORDATORIO: 11, ÚLTIMA_INTERACCION: 12,
+  FECHA_CONTACTO: 10, ESTADO_RECORDATORIO: 11, ÚLTIMA_INTERACCION: 12,
   INGRESO_AL_GRUPO: 13, OBSERVACIÓN: 14, AGENTE_ASIGNADO: 15, FECHA_ASIGNACION: 16
 };
 
@@ -122,7 +122,7 @@ function actualizarRegistro(registro) {
   sheet.getRange(row, COLUMNS.INGRESO_AL_GRUPO + 1).setValue(registro.INGRESO_AL_GRUPO || "");
   sheet.getRange(row, COLUMNS.OBSERVACIÓN + 1).setValue(registro.OBSERVACION || "");
   sheet.getRange(row, COLUMNS.FECHA_CONTACTO + 1).setValue(registro.FECHA_CONTACTO || "");
-  sheet.getRange(row, COLUMNS.FECHA_RECORDATORIO + 1).setValue(registro.FECHA_RECORDATORIO || "");
+  sheet.getRange(row, COLUMNS.ESTADO_RECORDATORIO + 1).setValue(registro.ESTADO_RECORDATORIO || "");
   sheet.getRange(row, COLUMNS.EDAD + 1).setValue(registro.EDAD || "");
   sheet.getRange(row, COLUMNS.MUNICIPIO + 1).setValue(registro.MUNICIPIO || "");
   sheet.getRange(row, COLUMNS.DEPARTAMENTO + 1).setValue(registro.DEPARTAMENTO || "");
@@ -145,7 +145,7 @@ function formatRow(rowArray, rowIndex) {
     PERFILES: rowArray[COLUMNS.PERFILES],
     PERFILES_CONFIRMADOS: rowArray[COLUMNS.PERFILES_CONFIRMADOS],
     FECHA_CONTACTO: rowArray[COLUMNS.FECHA_CONTACTO],
-    FECHA_RECORDATORIO: rowArray[COLUMNS.FECHA_RECORDATORIO],
+    ESTADO_RECORDATORIO: rowArray[COLUMNS.ESTADO_RECORDATORIO],
     ULTIMA_INTERACCION: rowArray[COLUMNS.ÚLTIMA_INTERACCION],
     INGRESO_AL_GRUPO: rowArray[COLUMNS.INGRESO_AL_GRUPO],
     OBSERVACION: rowArray[COLUMNS.OBSERVACIÓN],
