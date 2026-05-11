@@ -52,7 +52,7 @@ function obtenerCarga(agenteId) {
     
     let nuevosAsignados = 0;
     for (let i = 1; i < data.length; i++) {
-      if (nuevosAsignados >= 25) break;
+      if (nuevosAsignados >= 20) break;
       
       const asignadoActual = data[i][COLUMNS.AGENTE_ASIGNADO];
       if (!asignadoActual || asignadoActual.toString().trim() === "") {
