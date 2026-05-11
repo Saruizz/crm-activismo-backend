@@ -94,8 +94,10 @@ function obtenerAsignados(agenteId) {
           let diffHoras = (ahora - fechaContacto) / (1000 * 60 * 60);
           if (diffHoras > 48) {
             sheet.getRange(row, COLUMNS.ESTADO + 1).setValue("INHABILITADO");
+            sheet.getRange(row, COLUMNS.COMPROMISO + 1).setValue("INHABILITADO");
             sheet.getRange(row, COLUMNS.OBSERVACIÓN + 1).setValue("Inhabilitación automática (48h sin respuesta)");
             data[i][COLUMNS.ESTADO] = "INHABILITADO";
+            data[i][COLUMNS.COMPROMISO] = "INHABILITADO";
           }
         }
       }
@@ -110,12 +112,16 @@ function actualizarRegistro(registro) {
   const row = registro.id; 
   const hoy = new Date().toISOString();
   
+  let estado = registro.ESTADO || "";
   let compromiso = registro.COMPROMISO || "";
   if (compromiso === "VOCERO FRÍO" || compromiso === "VOCERO FRIO" || compromiso === "Vocero Frío") {
     compromiso = "VOCERO_FRIO";
   }
   
-  sheet.getRange(row, COLUMNS.ESTADO + 1).setValue(registro.ESTADO || "");
+  if (estado === "INHABILITADO") compromiso = "INHABILITADO";
+  if (compromiso === "INHABILITADO") estado = "INHABILITADO";
+  
+  sheet.getRange(row, COLUMNS.ESTADO + 1).setValue(estado);
   sheet.getRange(row, COLUMNS.COMPROMISO + 1).setValue(compromiso);
   sheet.getRange(row, COLUMNS.PERFILES + 1).setValue(registro.PERFILES || "");
   sheet.getRange(row, COLUMNS.PERFILES_CONFIRMADOS + 1).setValue(registro.PERFILES_CONFIRMADOS || "");
